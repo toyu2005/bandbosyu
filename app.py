@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(page_title="斑尾月例 提出状況", layout="wide")
 
-st.title("斑尾月例//提出状況")
+st.title("斑尾月例 提出状況")
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYHHQG26M-80wf7IgIr2-CbD36XAfPJG37P_WkE0K3QCGNHZz4Na4hR6w-2w7qMWItObLlY2KA0Vpi/pub?gid=911658908&single=true&output=csv"
 df = pd.read_csv(CSV_URL + "&t=" + str(pd.Timestamp.now().timestamp()))
