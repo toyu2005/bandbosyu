@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="斑尾月例 提出状況", layout="wide")
+st.set_page_config(page_title="斑尾月例//提出状況", layout="wide")
 
 st.title("斑尾月例 提出状況")
 
