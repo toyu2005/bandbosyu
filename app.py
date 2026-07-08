@@ -39,12 +39,8 @@ search = st.text_input("バンド名・出演者で検索")
 display_df = df.copy()
 
 if search:
-    display_df = display_df[
-        display_df.astype(str).apply(
-            lambda row: search in " ".join(row.values),
-            axis=1
-        )
-    ]
+    mask = display_df.fillna("").astype(str).agg(" ".join, axis=1).str.contains(search, case=False, na=False)
+    display_df = display_df[mask]
 
 st.caption(f"提出数：{len(display_df)}件")
 
