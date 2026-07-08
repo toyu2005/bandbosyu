@@ -9,18 +9,6 @@ CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTCWJVhUD05P7Ikx-uq5k
 df = pd.read_csv(CSV_URL + "&t=" + str(pd.Timestamp.now().timestamp()))
 df = df.dropna(how="all")
 
-if df.empty:
-    st.info("まだ提出はありません。例として以下のように表示されます。")
-
-    example_df = pd.DataFrame({
-        "バンド名(正式名称)": ["ヨルシカ", "back number"],
-        "出演者1": ["田中", "佐藤"],
-        "出演者2": ["鈴木", "山田"],
-        "出演者3": ["高橋", ""],
-    })
-
-    df = example_df
-
 st.markdown("""
 <style>
 .band-card {
