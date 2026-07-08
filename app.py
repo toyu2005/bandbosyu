@@ -17,15 +17,13 @@ member_cols = [col for col in df.columns if "出演者" in col or "メンバー"
 for _, row in df.iterrows():
     band_name = row["バンド名(正式名称)"]
 
-    members = []
-    for col in member_cols:
+    st.markdown(f"**バンド名：** {band_name}")
+
+    for i, col in enumerate(member_cols, start=1):
         if pd.notna(row[col]) and str(row[col]).strip() != "":
-            members.append(str(row[col]).strip())
+            st.markdown(f"**出演者{i}：** {str(row[col]).strip()}")
 
-    st.markdown(f"{band_name}")
-
-    for member in members:
-        st.markdown(f"- {member}")
+    st.markdown("---")
 
     st.divider()
 
