@@ -22,7 +22,7 @@ for _, row in df.iterrows():
         if pd.notna(row[col]) and str(row[col]).strip() != "":
             members.append(str(row[col]).strip())
 
-    st.markdown(f"###{band_name}")
+    st.markdown(f"{band_name}")
 
     for member in members:
         st.markdown(f"- {member}")
