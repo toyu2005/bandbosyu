@@ -7,7 +7,7 @@ st.title("斑尾月例 提出状況")
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYHHQG26M-80wf7IgIr2-CbD36XAfPJG37P_WkE0K3QCGNHZz4Na4hR6w-2w7qMWItObLlY2KA0Vpi/pub?gid=911658908&single=true&output=csv"
 
-df = pd.read_csv(CSV_URL)
+df = pd.read_csv(CSV_URL + "?t=" + str(pd.Timestamp.now().timestamp()))
 df = df.dropna(how="all")
 
 st.subheader("提出バンド一覧")
@@ -22,8 +22,6 @@ for _, row in df.iterrows():
     for i, col in enumerate(member_cols, start=1):
         if pd.notna(row[col]) and str(row[col]).strip() != "":
             st.markdown(f"**出演者{i}：** {str(row[col]).strip()}")
-
-    st.markdown("---")
 
     st.divider()
 
