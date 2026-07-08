@@ -34,6 +34,13 @@ st.markdown("""
 
 st.subheader("提出バンド一覧")
 
+search = st.text_input("バンド名・出演者で検索")
+
+if search:
+    df = df[df.apply(lambda row: search in " ".join(row.astype(str)), axis=1)]
+
+st.caption(f"提出数：{len(df)}件")
+
 member_cols = [col for col in df.columns if "出演者" in col or "メンバー" in col]
 
 for _, row in df.iterrows():
