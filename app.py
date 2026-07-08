@@ -15,7 +15,7 @@ st.subheader("提出バンド一覧")
 member_cols = [col for col in df.columns if "出演者" in col or "メンバー" in col]
 
 for _, row in df.iterrows():
-    band_name = row["バンド名(正式名称)"]
+    band_name = row[f"###バンド名(正式名称)"]
 
     members = []
     for col in member_cols:
