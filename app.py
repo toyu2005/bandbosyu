@@ -647,7 +647,7 @@ st.dataframe(
 
         "提出数": st.column_config.NumberColumn(
             "提出数",
-            format="%d件"
+            format="%d"
         )
     }
 )
