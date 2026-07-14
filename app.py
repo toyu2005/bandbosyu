@@ -72,68 +72,53 @@ st.caption(f"最終更新：{loaded_at}")
 
 
 # ==================================================
-# 部員名簿 59人
+# 名簿シートの公開CSV
 # ==================================================
+MEMBER_CSV_URL = (
+    "https://docs.google.com/spreadsheets/d/e/"
+    "2PACX-1vTCWJVhUD05P7Ikx-uq5kGN9gt0dFK-tcUWG2X5uqs1spACMS9oLPJOQ-mGrmwSiCDZH2pQULRQHLa-/"
+    "pub?gid=673348774&single=true&output=csv"
+)
+
+
+# 名簿を読み込む
+try:
+    member_df = pd.read_csv(
+        MEMBER_CSV_URL
+        + "&t="
+        + str(pd.Timestamp.now().timestamp())
+    )
+
+except Exception as error:
+    st.error(
+        "名簿シートを読み込めませんでした。"
+        "公開設定やURLを確認してください。"
+    )
+    st.exception(error)
+    st.stop()
+
+
+# 「名前」列があるか確認
+if "名前" not in member_df.columns:
+    st.error(
+        "名簿シートに「名前」列がありません。"
+        "A1セルを「名前」にしてください。"
+    )
+    st.stop()
+
+
+# 空欄を除いて名簿を作成
+ALL_MEMBERS = (
+    member_df["名前"]
+    .dropna()
+    .astype(str)
+    .str.strip()
+)
+
 ALL_MEMBERS = [
-    "あいか",
-    "あかり",
-    "あけひ",
-    "あつき",
-    "アマン",
-    "あやこ",
-    "あゆみ",
-    "あんじ",
-    "おのち",
-    "かずき",
-    "かりん　ひ",
-    "くう",
-    "こうせい　さ",
-    "そうた　ふ",
-    "だいと",
-    "なるみ",
-    "はぐみ",
-    "はるな",
-    "ばば",
-    "ひなた",
-    "ゆうと　す",
-    "ゆり",
-    "りゅうせい",
-    "れんと",
-    "やました",
-    "はまこう",
-    "おうき",
-    "こゆる",
-    "ごっち",
-    "しょうせい",
-    "そうわ",
-    "とし",
-    "ともき",
-    "はるき　た",
-    "ひな",
-    "ふみひろ",
-    "ましろ",
-    "みほ",
-    "みゆ　や",
-    "もりひろ",
-    "りこ　う",
-    "あやの",
-    "かい",
-    "かいと　さ",
-    "かりん　と",
-    "かりん　は",
-    "こう",
-    "こうせい　や",
-    "こじろう",
-    "しりゅう",
-    "せれな",
-    "ちひろ　た",
-    "ちひろ　まえ",
-    "ともな",
-    "のあ",
-    "みくと",
-    "ようすけ",
-    "らむ",
-    "れいな"
+    name
+    for name in ALL_MEMBERS
+    if name != ""
 ]
 
 
